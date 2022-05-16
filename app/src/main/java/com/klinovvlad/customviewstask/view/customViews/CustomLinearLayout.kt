@@ -3,9 +3,11 @@ package com.klinovvlad.customviewstask.view.customViews
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.view.setPadding
 
 class CustomLinearLayout @JvmOverloads constructor(
     context: Context,
@@ -29,7 +31,9 @@ class CustomLinearLayout @JvmOverloads constructor(
         textView.apply {
             textSize = 18F
             text = item
-            setTextColor(Color.BLACK)
+            setPaddingRelative(4, 0, 0, 0)
+            setBackgroundColor(Color.BLACK)
+            setTextColor(Color.WHITE)
         }
         addView(textView)
     }
