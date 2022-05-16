@@ -45,6 +45,7 @@ class RectangleView @JvmOverloads constructor(
             }
         }
     }
+
     private val paint = Paint().apply {
         isAntiAlias = true
         color = lineColor ?: 0

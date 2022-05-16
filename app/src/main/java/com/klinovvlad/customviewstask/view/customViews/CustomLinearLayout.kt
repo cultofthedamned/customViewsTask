@@ -19,9 +19,9 @@ class CustomLinearLayout @JvmOverloads constructor(
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        addItem("text1")
-        addItem("text2")
-        addItem("text3")
+        (0 until 30).map { i ->
+            addItem("some text $i")
+        }
     }
 
     private fun addItem(item: String) {
