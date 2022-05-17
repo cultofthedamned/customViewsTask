@@ -2,15 +2,10 @@ package com.klinovvlad.customviewstask.view.customViews
 
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.view.setPadding
 import com.klinovvlad.customviewstask.R
-import kotlin.math.roundToInt
 
 class CustomLinearLayout @JvmOverloads constructor(
     context: Context,
