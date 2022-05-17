@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.klinovvlad.customviewstask.R
 
 class CustomLinearLayout @JvmOverloads constructor(
@@ -12,7 +13,7 @@ class CustomLinearLayout @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defaultStyle: Int = 0
 ) : LinearLayout(context, attrs, defaultStyle) {
-    val Int.dp: Int
+    private val Int.dp: Int
         get() = (Resources.getSystem().displayMetrics.density * this).toInt()
 
     init {
@@ -32,8 +33,8 @@ class CustomLinearLayout @JvmOverloads constructor(
             textSize = 18f
             text = item
             setPaddingRelative(4.dp, 0, 0, 0)
-            setBackgroundColor(context.resources.getColor(R.color.black))
-            setTextColor(context.resources.getColor(R.color.white))
+            setBackgroundColor(ContextCompat.getColor(context, R.color.black))
+            setTextColor(ContextCompat.getColor(context, R.color.white))
         }
         addView(textView)
     }

@@ -1,11 +1,12 @@
 package com.klinovvlad.customviewstask.view.customViews
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.klinovvlad.customviewstask.R
 
 class RectangleView @JvmOverloads constructor(
@@ -21,6 +22,8 @@ class RectangleView @JvmOverloads constructor(
     private var lineWidth: Float
     private var lineColor: Int
     private val paint = Paint()
+    private val Int.dp: Float
+        get() = Resources.getSystem().displayMetrics.density * this
 
     init {
         context.theme.obtainStyledAttributes(
@@ -29,37 +32,37 @@ class RectangleView @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                roundingRadius = getFloat(
+                roundingRadius = getDimension(
                     R.styleable.RectangleView_roundingRadius,
                     100f
                 )
-                lineWidth = getFloat(
+                lineWidth = getDimension(
                     R.styleable.RectangleView_lineWidth,
                     10f
                 )
-                lineColor = getInt(
+                lineColor = getColor(
                     R.styleable.RectangleView_lineColor,
-                    Color.BLACK
+                    ContextCompat.getColor(context, R.color.black)
                 )
             } finally {
                 recycle()
+            }
+            paint.apply {
+                isAntiAlias = true
+                color = lineColor
+                style = Paint.Style.STROKE
+                strokeWidth = lineWidth
             }
         }
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        paint.apply {
-            isAntiAlias = true
-            color = lineColor
-            style = Paint.Style.STROKE
-            strokeWidth = lineWidth
-        }
         canvas?.drawRoundRect(
-            lineWidth,
-            lineWidth,
-            width - lineWidth,
-            height - lineWidth,
+            0.dp,
+            0.dp,
+            width - 0.dp,
+            height - 0.dp,
             roundingRadius,
             roundingRadius,
             paint
