@@ -1,6 +1,7 @@
 package com.klinovvlad.customviewstask.view.customViews
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -8,12 +9,16 @@ import android.util.AttributeSet
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.setPadding
+import com.klinovvlad.customviewstask.R
+import kotlin.math.roundToInt
 
 class CustomLinearLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defaultStyle: Int = 0
 ) : LinearLayout(context, attrs, defaultStyle) {
+    val Int.dp: Int
+        get() = (Resources.getSystem().displayMetrics.density * this).toInt()
 
     init {
         orientation = VERTICAL
@@ -29,11 +34,11 @@ class CustomLinearLayout @JvmOverloads constructor(
     private fun addItem(item: String) {
         val textView = TextView(context)
         textView.apply {
-            textSize = 18F
+            textSize = 18f
             text = item
-            setPaddingRelative(4, 0, 0, 0)
-            setBackgroundColor(Color.BLACK)
-            setTextColor(Color.WHITE)
+            setPaddingRelative(4.dp, 0, 0, 0)
+            setBackgroundColor(context.resources.getColor(R.color.black))
+            setTextColor(context.resources.getColor(R.color.white))
         }
         addView(textView)
     }

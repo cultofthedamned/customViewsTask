@@ -1,6 +1,7 @@
 package com.klinovvlad.customviewstask.view.customViews
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -17,9 +18,10 @@ class RectangleView @JvmOverloads constructor(
     attrs,
     defaultStyle
 ) {
-    private var roundingRadius: Float? = null
-    private var lineWidth: Float? = null
-    private var lineColor: Int? = null
+    private var roundingRadius: Float
+    private var lineWidth: Float
+    private var lineColor: Int
+    private val paint = Paint()
 
     init {
         context.theme.obtainStyledAttributes(
@@ -46,22 +48,21 @@ class RectangleView @JvmOverloads constructor(
         }
     }
 
-    private val paint = Paint().apply {
-        isAntiAlias = true
-        color = lineColor ?: 0
-        style = Paint.Style.STROKE
-        strokeWidth = lineWidth ?: 0f
-    }
-
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        paint.apply {
+            isAntiAlias = true
+            color = lineColor
+            style = Paint.Style.STROKE
+            strokeWidth = lineWidth
+        }
         canvas?.drawRoundRect(
-            20f,
-            20f,
-            width - 20f,
-            height - 20f,
-            roundingRadius ?: 0f,
-            roundingRadius ?: 0f,
+            lineWidth,
+            lineWidth,
+            width - lineWidth,
+            height - lineWidth,
+            roundingRadius,
+            roundingRadius,
             paint
         )
     }
