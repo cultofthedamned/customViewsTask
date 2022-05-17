@@ -59,10 +59,10 @@ class RectangleView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas?.drawRoundRect(
-            0.dp,
-            0.dp,
-            width - 0.dp,
-            height - 0.dp,
+            lineWidth / 2,
+            lineWidth / 2,
+            width - lineWidth / 2,
+            height - lineWidth / 2,
             roundingRadius,
             roundingRadius,
             paint
